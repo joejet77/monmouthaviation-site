@@ -42,6 +42,13 @@ nav a{text-decoration:none;font-size:14px;color:#D9D4C8}
 nav a:hover{color:#fff}
 nav a.cta{border:1px solid var(--gold);color:var(--gold);padding:9px 16px;border-radius:2px}
 nav a.cta:hover{background:var(--gold);color:var(--onyx)}
+.menu-btn{display:none;width:44px;height:44px;border:1px solid #3A3832;border-radius:2px;background:transparent;color:var(--ivory);align-items:center;justify-content:center;cursor:pointer}
+.menu-btn svg{width:20px;height:20px}
+.menu-btn:hover{border-color:var(--gold);color:var(--gold)}
+.mobile-menu{display:none;background:var(--onyx);border-bottom:1px solid var(--line-d)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:16px 24px;border-top:1px solid var(--line-d);color:var(--ivory);text-decoration:none;font-size:16px}
+.mobile-menu a:hover{color:var(--gold)}
 /* hero */
 .hero{background:var(--onyx);color:var(--ivory);position:relative;overflow:hidden}
 .hero .wrap{position:relative;padding-top:96px;padding-bottom:112px}
@@ -107,7 +114,8 @@ footer a{color:var(--muted-d)}
 footer .logo .w b{font-size:17px}
 footer .logo svg{width:26px;height:26px}
 @media(max-width:820px){
-  nav a.hide{display:none}
+  nav a.hide,nav a.cta{display:none}
+  .menu-btn{display:inline-flex}
   .grid,.sms,.about .cols{grid-template-columns:1fr}
   .sms{gap:36px}.about .cols{gap:24px}
   .hero .wrap{padding-top:64px;padding-bottom:80px}
@@ -130,8 +138,15 @@ footer .logo svg{width:26px;height:26px}
       <a class="hide" href="/smsready/">SMS Ready</a>
       <a class="hide" href="#about">About</a>
       <a class="cta" href="#contact">Contact</a>
+      <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </nav>
   </div>
+  <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile">
+    <a href="#services">Services</a>
+    <a href="/smsready/">SMS Ready</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
 <div class="hero">
@@ -239,5 +254,11 @@ footer .logo svg{width:26px;height:26px}
     <span>&copy; 2026 Monmouth Aviation. SMS Ready is a product of Monmouth Aviation. &middot; <a href="/smsready/terms.html">Terms</a></span>
   </div>
 </footer>
+<script>
+(function(){var b=document.querySelector('.menu-btn'),m=document.getElementById('mobile-menu');if(!b||!m)return;
+function set(o){m.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Close menu':'Open menu')}
+b.addEventListener('click',function(){set(!m.classList.contains('open'))});
+m.addEventListener('click',function(e){if(e.target.tagName==='A')set(false)});})();
+</script>
 </body>
 </html>
