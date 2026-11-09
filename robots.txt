@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://monmouthaviation.com/sitemap.xml
